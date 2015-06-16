@@ -1,9 +1,10 @@
 #Overshare
-# What is Overshare?
+[![Build Status](https://travis-ci.org/CodersInDev/overshare.svg?branch=test)](https://travis-ci.org/CodersInDev/overshare)
+## What is Overshare?
 
-#Why are we building Overshare?
+##Why are we building Overshare?
 
-#What Overshare does?
+##What Overshare does?
 * User login
  * [ ] Social media authentication 
  * [ ] Create new user
@@ -24,4 +25,4 @@
 * Admin
  * [ ] user statistics - login data
 
-#How can you run Overshare?
+##How can you run Overshare?
