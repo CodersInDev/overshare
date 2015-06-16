@@ -22,5 +22,6 @@
  * [ ] Search by hashtags photos
  * [ ] Filter by date
 * Admin
- * [ ] user statistics - login data  
+ * [ ] user statistics - login data
+
 #How can you run Overshare?
