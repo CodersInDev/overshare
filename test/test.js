@@ -12,7 +12,6 @@ lab.experiment("server test", function() {
 		};
 
 		server.inject(options, function(response) {
-			var result = response.result;
 			Code.expect(response.statusCode).to.equal(200);
 			done();
 		});
