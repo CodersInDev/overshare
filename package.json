@@ -8,7 +8,13 @@
   },
   "scripts": {
     "test": "./node_modules/lab/bin/lab -c",
-    "start": "node server.js"
+    "start": "node server.js",
+    "coverage": "./node_modules/.bin/istanbul cover test/.js && ./node_modules/.bin/istanbul check-coverage --statements 90 --functions 100 --lines 90 --branches 90",
+    "nocov": "node test/.js",
+    "codeclimate": "CODECLIMATE_REPO_TOKEN=4bfa8ea4c99ca07b9d477a6ed3fe8e43cb0f725532de0fc1f36ec5b747b51463 ./node_modules/codeclimate-test-reporter/bin/codeclimate.js < ./coverage/lcov.info",
+    "nodemon": "nodemon ./server.js",
+    "jshint": "jshint -c .jshintrc --exclude-path .gitignore .",
+    "istanbul": "istanbul"
   },
   "repository": {
     "type": "git",
@@ -23,6 +29,7 @@
     "code": "^1.4.0",
     "hapi": "^8.6.1",
     "joi": "^6.4.3",
+    "jshint": "^2.8.0",
     "lab": "^5.10.0"
   }
 }
