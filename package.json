@@ -1,0 +1,28 @@
+{
+  "name": "overshare",
+  "version": "0.0.1",
+  "description": "New Instagram app",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "./node_modules/lab/bin/lab -c",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CodersInDev/overshare.git"
+  },
+  "author": "CodersInDev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodersInDev/overshare/issues"
+  },
+  "devDependencies": {
+    "code": "^1.4.0",
+    "hapi": "^8.6.1",
+    "joi": "^6.4.3",
+    "lab": "^5.10.0"
+  }
+}
