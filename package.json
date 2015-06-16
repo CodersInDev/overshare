@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "code": "^1.4.0",
+    "codeclimate-test-reporter": "0.0.4",
     "hapi": "^8.6.1",
     "joi": "^6.4.3",
     "jshint": "^2.8.0",
