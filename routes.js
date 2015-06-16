@@ -8,4 +8,4 @@ var routes = [
 	}
 ];
 
-module.exports = routes
+module.exports = routes;
