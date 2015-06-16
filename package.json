@@ -29,6 +29,7 @@
     "code": "^1.4.0",
     "codeclimate-test-reporter": "0.0.4",
     "hapi": "^8.6.1",
+    "istanbul": "^0.3.15",
     "joi": "^6.4.3",
     "jshint": "^2.8.0",
     "lab": "^5.10.0"

@@ -1,5 +1,7 @@
 #Overshare
 [![Build Status](https://travis-ci.org/CodersInDev/overshare.svg?branch=test)](https://travis-ci.org/CodersInDev/overshare)
+[![Code Climate](https://codeclimate.com/github/CodersInDev/overshare/badges/gpa.svg)](https://codeclimate.com/github/CodersInDev/overshare)
+[![Test Coverage](https://codeclimate.com/github/CodersInDev/overshare/badges/coverage.svg)](https://codeclimate.com/github/CodersInDev/overshare/coverage)
 ## What is Overshare?
 
 ##Why are we building Overshare?
