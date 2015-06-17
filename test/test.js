@@ -18,7 +18,7 @@ lab.experiment("server test", function() {
 	});
 
 
-	lab.test("login and registration page", function(done){
+	lab.test("registration page", function(done){
 		var options = {
 			method: "GET",
 			url: "/auth"
@@ -40,8 +40,34 @@ lab.experiment("server test", function() {
 		server.inject(options, function(response) {
 			var payload = options.payload;
 			Code.expect(response.statusCode).to.equal(200);
-			//check the return value of the endpoint
 			Code.expect(response.result).to.equal(payload.email);
+			done();
+		});
+	});
+
+	lab.test("login page", function(done){
+		var options = {
+			method: "GET",
+			url: "/login"
+		};
+
+		server.inject(options, function(response) {
+			Code.expect(response.statusCode).to.equal(200);
+			done();
+		});
+	});
+
+	lab.test("login page on a post request", function(done){
+		var options = {
+			method: "POST",
+			url: "/login",
+			payload: {email: "example@mail.com", password: 1234}
+		};
+
+		server.inject(options, function(response) {
+			var payload = options.payload;
+			Code.expect(response.statusCode).to.equal(200);
+			//Code.expect(response.result).to.equal(payload.email);
 			done();
 		});
 	});

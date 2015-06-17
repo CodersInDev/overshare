@@ -2,21 +2,9 @@ function DatabseHepler(levelDB){
   var db = levelDB;
 
   this.addUser = function(email, password, cb){
-    this.checkEmail(email, function(err, result){
-      if(err){
-        db.put(email, password, function(err){
-          if(err){
-            return cb(err, undefined);
-          }else{
-            db.get(email, function(err, result){
-              if(err){
-                return cb(err, undefined);
-              }else{
-                return cb(false, email);
-              }
-            });
-          }
-        });
+    this.checkEmail(email, function(result){
+      if(!result){
+        insertUser(email, password, cb);
       }else{
         //a user already exist with this email
         return cb("User already exist", undefined);
@@ -27,9 +15,25 @@ function DatabseHepler(levelDB){
   this.checkEmail = function(email, cb){
     db.get(email, function(err, result){
       if(err){
-        cb(err.notFound, undefined);
+        cb(undefined);
       }else{
-        cb(false, result);
+        cb(result);
+      }
+    });
+  };
+
+  var insertUser = function(email, password, cb){
+    db.put(email, password, function(err){
+      if(err){
+        return cb(undefined);
+      }else{
+        db.get(email, function(err, result){
+          if(err){
+            return cb(undefined);
+          }else{
+            return cb(email);
+          }
+        });
       }
     });
   };

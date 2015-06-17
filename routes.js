@@ -25,16 +25,34 @@ var routes = [
 		path: '/auth',
 		method: 'POST',
 		handler: function(request, reply){
-      //create the hash here
-      
-      database.addUser(request.payload.email, request.payload.password, function(err, result){
-        if(err){
-          reply("Can't add the user");
-        }else
-          reply(result);
-        }
-      );
-	  }
+      Bcrypt.genSalt(10, function(err, salt) {
+        Bcrypt.hash(request.payload.password, salt, function(err, hash) {
+          database.addUser(request.payload.email, hash, function(result){
+            if(!result){
+              reply("Can't add the user");
+            }else{
+              reply(result);
+            }
+          });
+        });
+      });
+    }
+  },
+
+  {
+    path: '/login',
+    method: 'GET',
+    handler: function(request, reply){
+      reply("page login");
+    }
+  },
+
+  {
+    path: '/login',
+    method: 'POST',
+    handler: function(request, reply){
+      reply("post on login");
+    }
   }
 ];
 

@@ -26,6 +26,7 @@
     "lab": "^5.10.0"
   },
   "dependencies": {
+    "bcrypt": "^0.8.3",
     "level": "^1.1.0"
   }
 }
