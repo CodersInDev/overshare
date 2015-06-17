@@ -1,4 +1,6 @@
 
+var currentFile;
+
 // Make upload area drag and droppable
 var uploadArea = $("#uploadArea");
 uploadArea.on('dragenter', function (e) {
@@ -12,9 +14,8 @@ uploadArea.on('dragover', function (e) {
 uploadArea.on('drop', function (e) {
      e.preventDefault();
      var files = e.originalEvent.dataTransfer.files;
-     alert('dropped')
+     currentFile = files[0];
      previewFiles(files)
- 
      //Do upload stuff here
 });
 
@@ -43,7 +44,7 @@ function previewFiles(fileArray) {
     var img = document.createElement("img");
     img.classList.add("thumb");
     img.file = file;
-    $("#previewArea").append(img); 
+    $("#previewArea").html(img); 
     
     var reader = new FileReader();
     reader.onload = (function(aImg) { 
@@ -55,10 +56,18 @@ function previewFiles(fileArray) {
   }
 }
 
-$("#uploadForm").submit(function(){
-	//post to server
+$("#file").on("change", function(){
+	currentFile = $("#file").get(0).files[0]
+	previewFiles([currentFile])
 })
 
-function uploadFile() {
-	// send files to server
+$("#uploadForm").submit(function(e){
+	e.preventDefault();
+	uploadFile(currentFile)
+	console.log("submit")
+})
+
+function uploadFile(pic) {
+	//uplaod file
 }
+
