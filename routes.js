@@ -61,7 +61,21 @@ var routes = [
     handler: function(request, reply){
       reply("post on login");
     }
-  }
+  },
+  {
+    path: '/upload',
+    method: 'POST',
+    handler: function (request, reply){
+    	console.log("server received")
+      fs.stat('pix',function(err,stats){
+        if (err) {
+          fs.mkdirSync('pix')
+        };
+        var piccy = fs.createWriteStream('pix/'+request.payload.title);
+        piccy.write(request.payload.upload);
+      });
+    }
+  },
 ];
 
 module.exports = routes;
