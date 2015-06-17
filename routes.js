@@ -1,7 +1,8 @@
 var databaseConfig = require('./config.js'),
     db = require('level')(databaseConfig.database),
     dbHelper = require('./databaseHelpers.js'),
-    database = new dbHelper(db);
+    database = new dbHelper(db),
+    Mongo = require("./mongo.js");
 
 
 var routes = [
@@ -71,13 +72,8 @@ var routes = [
     method: 'POST',
     handler: function (request, reply){
     	console.log("server received");
-      fs.stat('pix',function(err,stats){
-        if (err) {
-          fs.mkdirSync('pix');
-        }
-        var piccy = fs.createWriteStream('pix/'+request.payload.title);
-        piccy.write(request.payload.upload);
-      });
+    	var newInsertedObject = {fileDesc: request.payload.description,picBuffer:request.payload.image, id:request.payload.id};
+      	Mongo.insert([newInsertedObject],"photos");
     }
   }
 ];

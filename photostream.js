@@ -63,11 +63,22 @@ $("#file").on("change", function(){
 
 $("#uploadForm").submit(function(e){
 	e.preventDefault();
-	uploadFile(currentFile)
+	uploadFile()
 	console.log("submit")
 })
 
-function uploadFile(pic) {
-	//uplaod file
+ function uploadFile() {
+    var fd = new FormData();
+    fd.append("filename", $("#fileName").val());
+    fd.append("description", $("#fileDesc").val());
+    fd.append("image", currentFile);
+    fd.append("id", randomID())
+    console.log(fd)
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/upload");
+    xhr.send(fd);
 }
 
+function randomID(){
+return Math.random().toString().split(".")[1]
+}
