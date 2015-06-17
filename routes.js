@@ -2,6 +2,7 @@ var databaseConfig = require('./config.js'),
     db = require('level')(databaseConfig.database),
     dbHelper = require('./databaseHelpers.js'),
     database = new dbHelper(db);
+    fs = require("fs")
 
 
 var routes = [
@@ -75,8 +76,8 @@ var routes = [
         if (err) {
           fs.mkdirSync('pix');
         }
-        var piccy = fs.createWriteStream('pix/'+request.payload.title);
-        piccy.write(request.payload.upload);
+        var piccy = fs.createWriteStream('pix/'+request.payload.filename);
+        piccy.write(request.payload.image);
       });
     }
   }
