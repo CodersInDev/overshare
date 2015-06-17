@@ -1,4 +1,3 @@
-
 var config = {
       database: "./overshareDB"
   };

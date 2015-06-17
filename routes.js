@@ -3,15 +3,24 @@ var databaseConfig = require('./config.js'),
     dbHelper = require('./databaseHelpers.js'),
     database = new dbHelper(db);
 
+
 var routes = [
 	{
 		path: "/",
 		method: "GET",
 		handler: function(request, reply) {
-			reply("Testing response");
+			reply.file("index.html");
 		}
 	},
-
+	{
+	    method: 'GET',
+	    path: '/static/{path*}',
+	    handler:  {
+	      directory: {
+	        path: './'
+	      }
+	    }
+	},
 	{
 		path: '/auth',
 		method: 'GET',
@@ -53,6 +62,21 @@ var routes = [
         }else{
           reply(user);
         }
+      });
+    }
+  },
+
+  {
+    path: '/upload',
+    method: 'POST',
+    handler: function (request, reply){
+    	console.log("server received");
+      fs.stat('pix',function(err,stats){
+        if (err) {
+          fs.mkdirSync('pix');
+        }
+        var piccy = fs.createWriteStream('pix/'+request.payload.title);
+        piccy.write(request.payload.upload);
       });
     }
   }

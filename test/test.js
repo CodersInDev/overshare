@@ -34,7 +34,7 @@ lab.experiment("server test", function() {
 		var options = {
 			method: "POST",
 			url: "/auth",
-			payload: {email: "example@mail.com", password: 1234}
+			payload: {email: "example@mail.com", password: "password"}
 		};
 
 		server.inject(options, function(response) {

@@ -19,7 +19,6 @@ function DatabseHepler(levelDB){
       if(err){
         cb(undefined);
       }else{
-        //return the password, but we'll change to return the username instead
         cb(result);
       }
     });
@@ -63,6 +62,7 @@ function DatabseHepler(levelDB){
           return cb(false);
         }
         });
+
       }
     });
   };
