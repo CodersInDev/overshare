@@ -67,19 +67,19 @@ $("#uploadForm").submit(function(e){
 	console.log("submit")
 })
 
-function uploadFile() {
-	var fd = new FormData();
-	fd.append("filename", $("#fileName").val());
-	fd.append("description", $("#fileDesc").val());
-	fd.append("image", currentFile);
-	fd.append("id", randomID())
-	console.log(fd)
-	var xhr = new XMLHttpRequest();
-	xhr.open("POST", "/upload");
-	xhr.send(fd);
+
+ function uploadFile() {
+    var fd = new FormData();
+    fd.append("filename", $("#fileName").val());
+    fd.append("description", $("#fileDesc").val());
+    fd.append("image", currentFile);
+    fd.append("id", randomID())
+    console.log(fd)
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/upload");
+    xhr.send(fd);
 }
 
 function randomID(){
-	return Math.random().toString().split(".")[1]
+return Math.random().toString().split(".")[1]
 }
-
