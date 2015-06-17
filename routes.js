@@ -1,5 +1,8 @@
 var databaseConfig = require('./config.js'),
-    db = require('level')(databaseConfig.database);
+    db = require('level')(databaseConfig.database),
+    dbHelper = require('./databaseHelpers.js'),
+    database = new dbHelper(db),
+    Bcrypt = require('bcrypt');
 
 var routes = [
 	{
@@ -14,7 +17,7 @@ var routes = [
 		path: '/auth',
 		method: 'GET',
 		handler: function(request, reply){
-			reply("Login and registration page");
+			reply.file("./register.html");
 		}
 	},
 
@@ -22,24 +25,17 @@ var routes = [
 		path: '/auth',
 		method: 'POST',
 		handler: function(request, reply){
-	  db.put(request.payload.email, request.payload.password, function(err){
-		  if(err){
-				console.log('data impossible to store');
-		  }else{
-				db.get(request.payload.email, function(err, result){
-					if(err){
-						console.log("impossible to get the user");
-					}else{
-						reply(request.payload.email);
-					}
-				});
-		  }
-	  });
-			//read the new element added from the database
-			//reply(request.payload.email);
-		}
-	},
-
+      //create the hash here
+      
+      database.addUser(request.payload.email, request.payload.password, function(err, result){
+        if(err){
+          reply("Can't add the user");
+        }else
+          reply(result);
+        }
+      );
+	  }
+  }
 ];
 
 module.exports = routes;
