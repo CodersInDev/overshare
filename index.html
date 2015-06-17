@@ -1,37 +1,42 @@
 <!DOCTYPE html>
 <html>
 	
-	<link rel="stylesheet" type="text/css" href="mobile.css">
+	<link rel="stylesheet" type="text/css" href="/static/mobile.css">
 
 	<head>
 		<title></title>
 	</head>
 	
 	<body>
+		<div id="mainPage">
+			<div id="mainLogo">MAIN OVERSHARE LOGO GOES HERE</div>
 
-		<div id="mainLogo">MAIN OVERSHARE LOGO GOES HERE</div>
+			<div id="introMessage">WELCOME TO OVERSHARE: SHOW US A PICTURE OF YOUR BREAKFAST OR CAT</div>
 
-		<div id="introMessage">WELCOME TO OVERSHARE: SHOW US A PICTURE OF YOUR BREAKFAST OR CAT</div>
+			<div id="logOrReg">
 
-		<div id="logOrReg">
+				<div id="registerButton">Click this button to register</div>
 
-			<div id="registerButton">Click this button to register</div>
+				<div id="loginButton">Click this button to log in</div>
 
-			<div id="loginButton">Click this button to log in</div>
-			
+				<div id="guestButton"><a href="/static/photostream.html">Continue without logging in</a></div>
+				
+			</div>
 		</div>
-
+			
 		<div id="registerPage">
 			<div id="registerBox">
 				<div id="registerIntro">
 					
 				</div>
 
-				<form>
-					<input class="userInput" type="text" placeholder="Choose a username">
-					<input class="userInput" type="text" placeholder="Enter your email address">
-					<input class="userInput" type="text" placeholder="Choose a password (A-Z, a-z, 0-9)">
-					<input class="userInput" type="text" placeholder="Re-enter your password">
+				<form method='POST' action='/auth'>
+					<label for='username'>Username:</label>
+					<input class="userInput" type="text" placeholder="Choose a username" name="username"><br>
+					<label for='email'>Email:</label>
+					<input class="userInput" type="text" placeholder="Enter your email address" name="email"><br>
+					<label for='password'>Password:</label>
+					<input class="userInput" type="password" placeholder="Password (A-Z, a-z, 0-9)" name="password"><br>
 					<input class="loginButtons" type="submit" value="Start Oversharing!">
 				</form>
 
@@ -53,8 +58,10 @@
 					<h4>Or log in using your email address and password</h4>
 
 					<form>
-						<input class="userInput" type="text" placeholder="Enter your email address">
-						<input class="userInput" type="text" placeholder="Enter your password">
+						<label for="email2">Email:</label>
+						<input class="userInput" type="text" placeholder="Enter your email address" name="email2">
+						<label for='password3'>Password:</label>
+						<input class="userInput" type="password" placeholder="Enter your password" name="password3">
 					</form>
 				
 				</div>
