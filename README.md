@@ -1,12 +1,14 @@
 #Overshare
 [![Build Status](https://travis-ci.org/CodersInDev/overshare.svg?branch=test)](https://travis-ci.org/CodersInDev/overshare)
-[![Code Climate](https://codeclimate.com/github/CodersInDev/overshare/badges/gpa.svg)](https://codeclimate.com/github/CodersInDev/overshare)
-[![Test Coverage](https://codeclimate.com/github/CodersInDev/overshare/badges/coverage.svg)](https://codeclimate.com/github/CodersInDev/overshare/coverage)
-## What is Overshare?
+
+## What is Overshare?  
+Overshare will one day be a photo-sharing web app to rival mySpace or even friendsreunited. Today, however, it is just a shell of its future self.
 
 ##Why are we building Overshare?
 
 ##What Overshare does?
+In two days, overshare will do all of the below and more. Currently, it has none of the functionality below. All it does right now is allow you to drag and drop (or select from computer) files into an upload box. A thumbnail of the image will be generated. If you approve, you may hit the "Overshare" button to upload the file to the server. Nothing at all will happen, but you should feel free to press the button anyway.  
+
 * User login
  * [ ] Social media authentication 
  * [ ] Create new user
@@ -28,3 +30,7 @@
  * [ ] user statistics - login data
 
 ##How can you run Overshare?
+
+Clone the repository, run npm install to install dependencies, then run ```node server.js```
+
+To run the tests, run ```npm test```
