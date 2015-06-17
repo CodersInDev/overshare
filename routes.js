@@ -1,4 +1,3 @@
-var mongo = require("./mongo.js");
 var routes = [
 	{
 		path: "/",
