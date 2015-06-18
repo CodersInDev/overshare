@@ -6,13 +6,7 @@ var databaseConfig = require('./config.js'),
 
 
 var routes = [
-	// {
-	// 	path: "/",
-	// 	method: "GET",
-	// 	handler: function(request, reply) {
-	// 		reply.file("index.html");
-	// 	}
-	// },
+
 	{
 	    method: 'GET',
 	    path: '/static/{path*}',
@@ -80,7 +74,6 @@ var routes = [
           username: request.auth.credentials.twitterName
         };
         console.log(newInsertedObject);
-        console.log(request.auth);
         Mongo.insert([newInsertedObject],"photos");
       }
     }
@@ -127,11 +120,9 @@ var routes = [
       handler: function (request, reply) {
         if (request.auth.isAuthenticated) {
           console.log("YOU ARE LOGGED IN as ", request.auth.credentials.twitterName);
-          // reply('<h1>You have successfully logged in</h1>');
         }
         else {
           console.log("You are NOT logged in");
-          // reply('<h1>You are NOT logged in</h1>');
         }
         return reply.file('index.html');
       }
@@ -149,11 +140,9 @@ var routes = [
       handler: function (request, reply) {
         if (request.auth.isAuthenticated) {
           console.log("YOU ARE LOGGED IN as ", request.auth.credentials.twitterName);
-          // reply('<h1>You have successfully logged in</h1>');
         }
         else {
           console.log("You are NOT logged in");
-          // reply('<h1>You are NOT logged in</h1>');
         }
         return reply.file('photostream.html');
       }
