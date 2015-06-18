@@ -1,10 +1,21 @@
 var Hapi = require("hapi"),
 	server = new Hapi.Server(),
+	Cookie = require('hapi-auth-cookie'),
+	// db = require('level')(databaseConfig.database),
 	routes = require("./routes.js");
 
 server.connection({
 	host: "localhost",
 	port: 8000
+});
+
+server.register(Cookie, function (err) {
+	server.auth.strategy('session', 'cookie', {
+		password: 'secret',
+		cookie: 'sid-overshare',
+		redirectTo: '/login',
+		isSecure: false
+});
 });
 
 server.route(routes);
