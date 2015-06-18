@@ -80,7 +80,7 @@ var routes = [
       auth: 'twitter',
       handler: function (request, reply) {
         var creds = request.auth.credentials;
-        console.log('Credentials are ', creds);
+        // console.log('Credentials are ', creds);
         console.log('Logged in with twitter');
         request.auth.session.clear();
         request.auth.session.set({twitterName: creds.profile.username});
