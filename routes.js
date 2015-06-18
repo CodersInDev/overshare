@@ -67,8 +67,13 @@ var routes = [
     method: 'POST',
     handler: function (request, reply){
     	console.log("server received");
-    	var newInsertedObject = {fileDesc: request.payload.description,picBuffer:request.payload.image, id:request.payload.id};
-      	Mongo.insert([newInsertedObject],"photos");
+    	var newInsertedObject = {
+        fileDesc: request.payload.description,
+        picBuffer:request.payload.image,
+        id:request.payload.id,
+        timestamp: Date.now()
+      };
+        Mongo.insert([newInsertedObject],"photos");
     }
   },
 
