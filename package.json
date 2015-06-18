@@ -36,6 +36,9 @@
   },
   "dependencies": {
     "bcrypt": "^0.8.3",
+    "bell": "^4.0.0",
+    "getconfig": "^2.1.0",
+    "hapi-auth-cookie": "^3.0.1",
     "level": "^1.1.0"
   }
 }

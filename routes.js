@@ -5,13 +5,13 @@ var databaseConfig = require('./config.js'),
 
 
 var routes = [
-	{
-		path: "/",
-		method: "GET",
-		handler: function(request, reply) {
-			reply.file("index.html");
-		}
-	},
+	// {
+	// 	path: "/",
+	// 	method: "GET",
+	// 	handler: function(request, reply) {
+	// 		reply.file("index.html");
+	// 	}
+	// },
 	{
 	    method: 'GET',
 	    path: '/static/{path*}',
@@ -78,6 +78,58 @@ var routes = [
         var piccy = fs.createWriteStream('pix/'+request.payload.title);
         piccy.write(request.payload.upload);
       });
+    }
+  },
+
+  // TWITTER AUTHENTICATION ROUTES //
+  {
+    path: '/loginTwitter',
+    method: ['GET', 'POST'],
+    config: {
+      auth: 'twitter',
+      handler: function (request, reply) {
+        var creds = request.auth.credentials;
+        console.log('Credentials are ', creds);
+        console.log('Logged in with twitter');
+        request.auth.session.clear();
+        request.auth.session.set({twitterName: creds.profile.username});
+        return reply.redirect('/static/photostream.html');
+      }
+    }
+  },
+
+  {
+    path: '/logout',
+    method: 'GET',
+    config: {
+      auth: 'session',
+      handler: function (request, reply) {
+        request.auth.session.clear();
+        console.log('Logged out successfully');
+        return reply.redirect('/');
+      }
+    }
+  },
+
+  {
+    path: '/',
+    method: 'GET',
+    config: {
+      auth: {
+        strategy: 'session',
+        mode: 'try'
+      },
+      handler: function (request, reply) {
+        if (request.auth.isAuthenticated) {
+          console.log("YOU ARE LOGGED IN");
+          // reply('<h1>You have successfully logged in</h1>');
+        }
+        else {
+          console.log("You are NOT logged in");
+          // reply('<h1>You are NOT logged in</h1>');
+        }
+        return reply.file('index.html');
+      }
     }
   }
 ];
