@@ -9,6 +9,11 @@ server.connection({
 	port: 8000
 });
 
+server.views({
+    engines: { html: require('handlebars') },
+    path: __dirname + '/public/templates'
+});
+
 server.register(Cookie, function (err) {
 	server.auth.strategy('session', 'cookie', {
 		password: 'secret',
