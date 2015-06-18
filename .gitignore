@@ -33,3 +33,5 @@ npm-debug.log
 *dump.rdb
 
 overshareDB
+
+config/default.json
