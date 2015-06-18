@@ -6,7 +6,7 @@ var Hapi = require("hapi"),
 
 server.connection({
 	host: "localhost",
-	port: 8000
+	port: process.env.PORT || 8000
 });
 
 server.views({
