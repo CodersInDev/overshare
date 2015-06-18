@@ -35,6 +35,7 @@
     "lab": "^5.10.0"
   },
   "dependencies": {
+    "mongodb": "~2.0",
     "bcrypt": "^0.8.3",
     "bell": "^4.0.0",
     "getconfig": "^2.1.0",
