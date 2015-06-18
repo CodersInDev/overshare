@@ -66,24 +66,17 @@ var routes = [
 			},
 			handler: function (request, reply){
 				console.log("server received");
-				var newInsertedObject = {};
-				if (request.auth.isAuthenticated) {
-					newInsertedObject = {
-						fileDesc: request.payload.description,
+				var newInsertedObject = {
+					fileDesc: request.payload.description,
 						picBuffer:request.payload.image,
 						id:request.payload.id,
-						timestamp: Date.now(),
-						username: request.auth.credentials.twitterName
-					};
+						timestamp: Date.now()
+				};
+				if (request.auth.isAuthenticated) {
+					newInsertedObject.username = request.auth.credentials.twitterName;
 				}
 				else {
-					newInsertedObject = {
-						fileDesc: request.payload.description,
-						picBuffer:request.payload.image,
-						id:request.payload.id,
-						timestamp: Date.now(),
-						username: "Anonymous"
-					};
+					newInsertedObject.username = "Anonymous";
 				}
 				console.log(newInsertedObject);
 				Mongo.insert([newInsertedObject],"photos");
