@@ -4,7 +4,10 @@ var routes = [
 	{
 		path: "/",
 		method: "GET",
-    handler: handlers.home
+    config: {
+      handler: handlers.stream,
+      auth: 'session'
+    }
 	},
 
   {
@@ -41,8 +44,6 @@ var routes = [
       auth: 'session'
     }
   }
-
-
 ];
 
 module.exports = routes;

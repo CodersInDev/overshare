@@ -1,10 +1,11 @@
+var database = require('./mongo.js');
+
 var handlers = {
   home: function(request, reply) {
     reply.file(__dirname + "/public/templates/homepage.html");
   },
 
   stream: function(request, reply){
-    console.log(request.auth.credentials);
     var context = {username: request.auth.credentials.username};
     return reply.view('stream', context);
   },
@@ -22,11 +23,13 @@ var handlers = {
         var context = {message: info};
         return reply.view('login', context);
       }else{
+        //test db
+        // database.insert()
         account = {id: "simon", password: "myPassword", username: "simonLab"};
       }
     }
     if(request.method === 'get'){
-      return reply.file(__dirname + '/public/html/login.html');
+       return reply.view('login');
     }
     if(account){
       request.auth.session.set(account);
