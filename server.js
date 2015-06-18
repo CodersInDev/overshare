@@ -10,8 +10,6 @@ var Hapi = require("hapi"),
 	config.auth.twitter.clientSecret = secrets.clientSecret;
 
 server.connection({
-	// host: "localhost",
-	// port: 8000
 	host: config.hostname,
 	port: config.port
 });
@@ -45,10 +43,5 @@ server.register([Bell, Cookie], function (err) {
 	});
 });
 
-// server.route(routes);
-
-// server.start(function() {
-//	console.log("Server running at: ", server.info.uri);
-// });
 
 module.exports = server;
