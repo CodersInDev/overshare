@@ -1,5 +1,8 @@
 
 var currentFile;
+var currentStreamArray = [];
+
+// $("document").ready(appendPhotos())
 
 // Make upload area drag and droppable
 var uploadArea = $("#uploadArea");
@@ -12,11 +15,16 @@ uploadArea.on('dragover', function (e) {
      e.preventDefault();
 });
 uploadArea.on('drop', function (e) {
-     e.preventDefault();
-     var files = e.originalEvent.dataTransfer.files;
-     currentFile = files[0];
-     previewFiles(files)
-     //Do upload stuff here
+    e.preventDefault();
+    var fileNo = 0;
+    var files = e.originalEvent.dataTransfer.files;
+    if(!files[0].type.match(/image.*/)) {
+    	fileNo += 1; 
+     	alert("Only images can be overshared!")
+    } else {
+	    currentFile = files[0];
+	    previewFiles(currentFile)
+	}
 });
 
 
@@ -35,12 +43,7 @@ $(document).on('drop', function (e) {
 });
 
 
-// if(!file.type.match(/image.*/))
-
-function previewFiles(fileArray) {
-  for (var i = 0; i < fileArray.length; i++) {
-    var file = fileArray[i];
-    
+function previewFiles(file) {
     var img = document.createElement("img");
     img.classList.add("thumb");
     img.file = file;
@@ -54,32 +57,67 @@ function previewFiles(fileArray) {
     })(img);
     reader.readAsDataURL(file);
   }
-}
+
 
 $("#file").on("change", function(){
 	currentFile = $("#file").get(0).files[0]
-	previewFiles([currentFile])
+	previewFiles(currentFile)
 })
 
 $("#uploadForm").submit(function(e){
 	e.preventDefault();
-	uploadFile()
 	console.log("submit")
+	get_signed_request(currentFile)
 })
 
-
- function uploadFile() {
-    var fd = new FormData();
-    fd.append("filename", $("#fileName").val());
-    fd.append("description", $("#fileDesc").val());
-    fd.append("image", currentFile);
-    fd.append("id", randomID())
-    console.log(fd)
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/upload");
-    xhr.send(fd);
+function get_signed_request(file){
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "/sign_s3?file_name="+file.name+"&file_type="+file.type);
+  xhr.onreadystatechange = function(){
+    if(xhr.readyState === 4){
+      if(xhr.status === 200){
+        upload_file(file, xhr.responseText);
+      }
+      else{
+        alert("Could not get signed URL."); 
+      }
+    }
+  };
+  xhr.send();
 }
 
+function upload_file(file, data){
+	console.log(data)
+  var xhr = new XMLHttpRequest();
+  xhr.open("PUT", data); 
+  xhr.setRequestHeader('x-amz-acl', 'public-read');
+  xhr.onerror = function() {
+      alert("Could not upload file.");
+  };
+  console.log(xhr) 
+  xhr.send(file);
+}
+
+//  function uploadFile() {
+//     var fd = new FormData();
+//     fd.append("filename", $("#fileName").val());
+//     fd.append("description", $("#fileDesc").val());
+//     fd.append("image", currentFile);
+//     fd.append("id", randomID());
+//     fd.append("userId", //TODO send username)
+//     console.log(fd)
+//     var xhr = new XMLHttpRequest();
+//     xhr.open("POST", "/upload");
+//     xhr.send(fd);
+// }
+
 function randomID(){
-return Math.random().toString().split(".")[1]
+	return Math.random().toString().split(".")[1]
+}
+
+// get photos, add them to DOM
+function getAllPhotos(){
+	$.get("/view", function(res){
+		$("#photoList").prepend(res)
+	});
 }

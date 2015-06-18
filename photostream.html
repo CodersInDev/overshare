@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-	<link rel="stylesheet" type="text/css" href="/static/mobile.css">
+	<link rel="stylesheet" type="text/css" href="/static/photo-mobile.css">
 
 	<head>
 		<title>Overshare - TMI</title>
@@ -9,18 +9,20 @@
 	<body>
 		<div id"navBar">
 			<div id="uploadArea">
-				<h2>Upload Files</h2>
-				<h4>Choose image files from your phone/computer, or drag 'n' drop images anywhere in the upload area - then hit "Overshare!" to upload them</h4>
-				<form id="uploadForm">
-				    <input id="fileName" type="text" name="fileName" placeholder="Give your photo a name (optional)"><br>
-				    <input id="fileDesc" type="text" name="fileDesc" placeholder="Give the world too much information about your photo (optional)"><br>
-				    <input id="file" type="file" name="upload" multiple="false" accept="image/*"><br>
-				    <input id="uploadButton" type="submit" value="Overshare!">
+				<div id="uploadWrapper">
+					<h2>Upload Files</h2>
+					<h4>Choose image files from your phone/computer, or drag 'n' drop images anywhere in the upload area - then hit "Overshare!" to upload them</h4>
+					<form id="uploadForm">
+					    <input id="fileName" type="text" name="fileName" placeholder="Name your photo (optional)" maxlength="50"><br>
+					    <textarea id="fileDesc" placeholder="Give the world too much information about your photo (optional)" maxlength="400"></textarea><br>
+					    <input id="file" type="file" name="upload" multiple="false" accept="image/*"><br>
+					    <input id="uploadButton" type="submit" value="Overshare!">
+					</form>
+				</div>
 
-				    <div id="previewArea">
-				    	
-				    </div>
-				</form>
+			    <div id="previewArea">
+			    	
+			    </div>
 			</div>
 
 			<div id="dashboard">
@@ -30,9 +32,9 @@
 		</div>
 
 		<div id="photoStream">
-			<ul>
+			<div id="photoList">
 				
-			</ul>
+			</div>
 		</div>
 
 		<footer></footer>
