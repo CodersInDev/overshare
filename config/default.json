@@ -14,9 +14,7 @@
 		"twitter": {
 			"provider": "twitter",
 			"password": "twitterPassword",
-			"isSecure": false,
-			"clientId": "Put your clientId here",
-			"clientSecret": "Put your secret client key here"
+			"isSecure": false
 		}
 	},
 	"session": {

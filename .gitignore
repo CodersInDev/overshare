@@ -34,4 +34,4 @@ npm-debug.log
 
 overshareDB
 
-config/default.json
+secrets.js

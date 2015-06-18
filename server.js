@@ -3,7 +3,11 @@ var Hapi = require("hapi"),
 	routes = require("./routes.js"),
 	Bell = require("bell"),
 	Cookie = require("hapi-auth-cookie"),
-	config = require("getconfig");
+	config = require("getconfig"),
+	secrets = require("./secrets.js");
+
+	config.auth.twitter.clientId = secrets.clientId;
+	config.auth.twitter.clientSecret = secrets.clientSecret;
 
 server.connection({
 	// host: "localhost",
