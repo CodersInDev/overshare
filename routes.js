@@ -34,14 +34,9 @@ var routes = [
 		path: '/auth',
 		method: 'POST',
 		handler: function(request, reply){
-      database.addUser(request.payload.email, request.payload.password, function(result){
-        if(!result){
-          reply("Can't add the user");
-        }else{
-          reply(result);
-        }
-      });
-    }
+      var newInsertedObject = {email: request.payload.email,password:request.payload.password};
+        Mongo.insert([newInsertedObject],"users");
+    }      
   },
 
   {
