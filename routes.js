@@ -75,7 +75,10 @@ var routes = [
   {
     method: "POST",
     path: "/sign_s3",
-    handler: handlers.awsS3
+    config:{
+      auth: 'session',
+      handler: handlers.awsS3
+    }
   },
 
   {

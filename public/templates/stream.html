@@ -28,6 +28,9 @@
 
 			<div id="dashboard">
         <h2>{{email}}</h2>
+				{{#each images}}
+				  <img src={{this}}>
+				{{/each}}
         <form action='/logout' method='get'>
           <label>Logout</label>
           <input type="submit">
