@@ -5,10 +5,10 @@
 Overshare will one day be a photo-sharing web app to rival mySpace or even friendsreunited. Today, however, it is just a shell of its future self.
 
 ##Why are we building Overshare?
+People need yet another platform to share all the mundane aspects of their lives.
 
 ##What Overshare does?
-In two days, overshare will do all of the below and more. Currently, it has none of the functionality below. All it does right now is allow you to drag and drop (or select from computer) files into an upload box. A thumbnail of the image will be generated. If you approve, you may hit the "Overshare" button to upload the file to the server. Nothing at all will happen, but you should feel free to press the button anyway.
-You can also create a new user. The endpoints are working but the front-end is not yet linked. We use levelDB to store our users with the email has a key and a hash as the value which represent the password. The endpoints for the authentication also work, the next step is to store the user information into cookies.
+In the future, overshare will do all of the below and more. Currently, a user can register for the service and log in using their email address and a chosen password, or using their Twitter account. When the new user registers, they will receive a welcome email to congratulate them on choosing to start oversharing their lives.
 
 * User login
  * [x] Social media authentication 
