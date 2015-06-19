@@ -107,7 +107,7 @@ var handlers = {
             url: "https://s3-eu-west-1.amazonaws.com/overshare/images/" + request.query.file_name
           };
           database.insert(model, 'images');
-          return reply.redirect('/');
+          reply(data);
         }
     });
   },

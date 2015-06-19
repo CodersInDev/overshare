@@ -85,17 +85,39 @@ function get_signed_request(file){
   xhr.send();
 }
 
+
 function upload_file(file, data){
-	console.log(data);
   var xhr = new XMLHttpRequest();
   xhr.open("PUT", data);
   xhr.setRequestHeader('x-amz-acl', 'public-read');
   xhr.onerror = function() {
       alert("Could not upload file.");
   };
-  console.log(xhr) ;
+  console.log(xhr);
+  xhr.onreadystatechange = function(){
+    if(xhr.readyState === 4){
+      if(xhr.status === 200){
+        // upload_file(file, xhr.responseText);
+        location.reload();
+      }
+    }
+  };
   xhr.send(file);
 }
+
+
+// function upload_file(file, data){
+//   console.log("send file");
+// 	console.log(data);
+//   var xhr = new XMLHttpRequest();
+//   xhr.open("PUT", data);
+//   xhr.setRequestHeader('x-amz-acl', 'public-read');
+//   xhr.onerror = function() {
+//       alert("Could not upload file.");
+//   };
+//   console.log(xhr) ;
+//   xhr.send(file);
+// }
 
 //  function uploadFile() {
 //     var fd = new FormData();
