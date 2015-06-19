@@ -11,6 +11,16 @@ var routes = [
 	},
 
   {
+      path: '/public/{path*}',
+      method: 'GET',
+			handler:  {
+				directory: {
+					path: './public'
+				}
+			}
+  },
+
+  {
     path: "/stream",
     method: "GET",
     config: {
@@ -60,7 +70,13 @@ var routes = [
       }
     }
     }
-  }
+  },
+
+  {
+  method: "POST",
+  path: "/sign_s3",
+  handler: handlers.awsS3
+}
 ];
 
 module.exports = routes;

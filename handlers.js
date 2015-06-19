@@ -1,5 +1,6 @@
 var database = require('./mongo.js');
 var Bcrypt = require('bcrypt');
+var aws = require('aws-sdk');
 
 var handlers = {
   home: function(request, reply) {
@@ -72,7 +73,28 @@ var handlers = {
       //try to auth with the new email and password
       return reply.redirect('/');
     }
-  }
+  },
+
+  awsS3: function(request, reply){
+	console.log("awsS3 handler received");
+	aws.config.update({accessKeyId: process.env.AWS_ACCESS_KEY_ID, secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY});
+	var s3 = new aws.S3();
+	var s3_params = {
+		Bucket: process.env.S3_BUCKET,
+		Key: 'images/' + request.query.file_name,
+		Expires: 60,
+		ContentType: request.query.file_type,
+		ACL: 'public-read'
+	};
+	s3.getSignedUrl('putObject', s3_params, function(err, data){
+		console.log("awsS3 signed URL received: ", data);
+        if(err){
+          console.log("err ",err);
+        } else {
+          reply(data);
+        }
+    });
+}
 
 };
 

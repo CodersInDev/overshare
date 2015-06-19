@@ -33,3 +33,4 @@ npm-debug.log
 *dump.rdb
 
 overshareDB
+.env

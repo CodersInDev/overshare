@@ -33,6 +33,7 @@
     "lab": "^5.10.0"
   },
   "dependencies": {
+    "aws-sdk": "^2.1.35",
     "bcrypt": "^0.8.3",
     "handlebars": "^3.0.3",
     "hapi": "^8.6.1",
