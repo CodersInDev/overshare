@@ -13,11 +13,11 @@ In the future, overshare will do all of the below and more. Currently, a user ca
 * User login
  * [x] Social media authentication 
  * [x] Create new user
-  * [ ] Welcome email 
+  * [x] Welcome email 
  * [x] Basic authentication
 * File upload/download
  * [x] User can upload file
- * [ ] User can view public stream photos
+ * [x] User can view public stream photos
  * [ ] User can delete own photos
 * Social functionality
  * [ ] Follow users
