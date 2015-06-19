@@ -1,25 +1,31 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-  <title>Login</title>
-  <link rel='stylesheet' type='text/css' href='/public/css/main.css'/>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="http://fonts.googleapis.com/css?family=Raleway:400,300,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/public/css/mobile_first.css" media="screen, handheld" />
+    <link rel="stylesheet" type="text/css" href="/public/css/enhanced.css" media="screen  and (min-width: 48em)" />
 </head>
-
 <body>
-  <h1>Login</h1>
-  <h2>Welcome to overshot, please login to be able to use the application</h2>
-  {{message}}
-  <form action='/login' method='POST'>
-    <label for='email'>email</label>
-    <input name='email' type='text'>
-    <label for='password'>password</label>
-    <input name='password' type='text'>
-    <input type="submit">
-  </form>
-
-  <p>Or log with your others accounts:</p>
-  <p>gmail</p>
-
-  <a href='/user'>Or register now!!!</a>
+<div class="container">
+    <div class="section1">
+        <h1 class="logo">Welcome to Overshare</h1>
+        <div id="form_wrapper">
+            <h2 class="twitter">Login using Twitter</h2>
+            <h2>or</h2>
+            {{message}}
+            <form action='/login' method='POST' id="login_form">
+                <label for='email'>Email</label>
+                <input id='email_input' name='email' type='text'>
+                <label for='password'>Password</label>
+                <input id='password_input' name='password' type='password'>
+                <button id='login_button'>Login</button>
+            </form>
+            <h2 class='member_text'>Not a member yet?<span class="join"><a href="/user">Join Us</a></span></h2>
+        </div>
+    </div>
+</div>
+<script src=""></script>
 </body>
 </html>

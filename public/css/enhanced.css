@@ -1,0 +1,42 @@
+/*this rules are for screen 48em = 768px*/
+.member_text {
+	text-align: center;
+}
+
+.twitter {
+	padding: 0;
+	font-size: 1.5em;
+}
+h2 {
+    font-size: 2em;
+}
+label {
+    display: block;
+    font-size: 2em;
+}
+
+.logo {
+    font-size: 2em;
+}
+.bottom_text h5 {
+    font-size: 1.2em;
+}
+/************End Global**************/
+
+
+/*60.375em * 16px = 966px*/
+@media screen and (min-width: 60.375em) {
+    h3 {font-size: 2em;}
+.twitter {font-size: 1.5em;}
+}
+
+/*76.5em * 16px = 1224px*/
+@media screen and (min-width: 76.5em) {
+    h2 {font-size: 2em;}
+    #form_wrapper {
+        width: 60%;
+    }
+    .logo {
+        font-size: 2em;
+    }
+}
