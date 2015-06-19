@@ -98,7 +98,7 @@ var handlers = {
     });
   },
 //
-//
+
   twitter: function(request, reply){
     var creds = request.auth.credentials;
     request.auth.session.clear();
