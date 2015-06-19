@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
-	<link rel="stylesheet" type="text/css" href="/static/photo-mobile.css">
-
-	<head>
-		<title>Overshare - TMI</title>
-	</head>
+	 <meta charset="UTF-8">
+    <title>Stream</title>
+    <link href="http://fonts.googleapis.com/css?family=Raleway:400,300,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/public/css/mobile_first.css" media="screen, handheld" />
+    <link rel="stylesheet" type="text/css" href="/public/css/enhanced.css" media="screen  and (min-width: 48em)" />
 
 	<body>
 		<div id"navBar">
-			<div><a href="/logout">Logout</a></div>
+			<div class="logout"><a href="/logout">Logout</a></div>
+			<h2>Hello <span class='email_welcome'>{{email}}!</span></h2>
 			<div id="uploadArea">
 				<div id="uploadWrapper">
-					<h2>Upload Files</h2>
-					<h4>Choose image files from your phone/computer, or drag 'n' drop images anywhere in the upload area - then hit "Overshare!" to upload them</h4>
+					
+					<h3>Overshare an image</h3>
 					<form id="uploadForm">
-					    <input id="fileName" type="text" name="fileName" placeholder="Name your photo (optional)" maxlength="50"><br>
+					<label for='fileName' id="fileName">File Description</label>
+					    <!-- <input id="fileName" type="text" name="fileName" placeholder="Name your photo (optional)" maxlength="50"><br> -->
 					    <textarea id="fileDesc" placeholder="Give the world too much information about your photo (optional)" maxlength="400"></textarea><br>
 					    <input id="file" type="file" name="upload" multiple="false" accept="image/*"><br>
 					    <input id="uploadButton" type="submit" value="Overshare!">
@@ -27,11 +29,8 @@
 			</div>
 
 			<div id="dashboard">
-        <h2>{{email}}</h2>
-        <form action='/logout' method='get'>
-          <label>Logout</label>
-          <input type="submit">
-        </form>
+        
+       
 			</div>
 
 		</div>
