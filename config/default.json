@@ -1,0 +1,26 @@
+{
+	"hostname": "localhost",
+	"port": 8000,
+	"urls": {
+		"failureRedirect": "/login",
+		"successRedirect": "/"
+	},
+	"auth": {
+		"urls": {
+			"failureRedirect": "/login",
+			"successRedirect": "/account",
+			"failureFlash": true
+		},
+		"twitter": {
+			"provider": "twitter",
+			"password": "twitterPassword",
+			"isSecure": false
+		}
+	},
+	"session": {
+		"cookieOptions": {
+			"password": "sessionPassword",
+			"isSecure": false
+		}
+	}
+}

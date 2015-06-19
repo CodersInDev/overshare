@@ -1,4 +1,5 @@
 var databaseConfig = require('./config.js'),
+<<<<<<< HEAD
     db = require('level')(databaseConfig.database),
     dbHelper = require('./databaseHelpers.js');
     var database = new dbHelper(db);
@@ -26,23 +27,23 @@ function awsS3(request, reply){
     });
 }
 
+=======
+		db = require('level')(databaseConfig.database),
+		dbHelper = require('./databaseHelpers.js'),
+		database = new dbHelper(db),
+		Mongo = require("./mongo.js");
+>>>>>>> master
 
 var routes = [
+
 	{
-		path: "/",
-		method: "GET",
-		handler: function(request, reply) {
-			reply.file("index.html");
-		}
-	},
-	{
-	    method: 'GET',
-	    path: '/static/{path*}',
-	    handler:  {
-	      directory: {
-	        path: './'
-	      }
-	    }
+			method: 'GET',
+			path: '/static/{path*}',
+			handler:  {
+				directory: {
+					path: './'
+				}
+			}
 	},
 	{
 		path: '/auth',
@@ -56,24 +57,20 @@ var routes = [
 		path: '/auth',
 		method: 'POST',
 		handler: function(request, reply){
-      database.addUser(request.payload.email, request.payload.password, function(result){
-        if(!result){
-          reply("Can't add the user");
-        }else{
-          reply(result);
-        }
-      });
-    }
-  },
+			var newInsertedObject = {email: request.payload.email,password:request.payload.password};
+				Mongo.insert([newInsertedObject],"users");
+		}      
+	},
 
-  {
-    path: '/login',
-    method: 'GET',
-    handler: function(request, reply){
-      reply.file('./login.html');
-    }
-  },
+	{
+		path: '/login',
+		method: 'GET',
+		handler: function(request, reply){
+			reply.file('./login.html');
+		}
+	},
 
+<<<<<<< HEAD
   // {
   //   path: '/login',
   //   method: 'POST',
@@ -117,6 +114,120 @@ var routes = [
     path: "/sign_s3",
     handler: awsS3
   }
+=======
+	{
+		path: '/login',
+		method: 'POST',
+		handler: function(request, reply){
+			database.login(request.payload.email, request.payload.password, function(user){
+				if(!user){
+					console.log("Wrong login!");
+					reply(undefined);
+				}else{
+					reply(user);
+				}
+			});
+		}
+	},
+
+	{
+		path: '/upload',
+		method: 'POST',
+		config: {
+			auth: {
+				strategy: 'session',
+				mode: 'try'
+			},
+			handler: function (request, reply){
+				console.log("server received");
+				var newInsertedObject = {
+					fileDesc: request.payload.description,
+						picBuffer:request.payload.image,
+						id:request.payload.id,
+						timestamp: Date.now()
+				};
+				if (request.auth.isAuthenticated) {
+					newInsertedObject.username = request.auth.credentials.twitterName;
+				}
+				else {
+					newInsertedObject.username = "Anonymous";
+				}
+				console.log(newInsertedObject);
+				Mongo.insert([newInsertedObject],"photos");
+			}
+		}
+	},
+
+	// TWITTER AUTHENTICATION ROUTES //
+	{
+		path: '/loginTwitter',
+		method: ['GET', 'POST'],
+		config: {
+			auth: 'twitter',
+			handler: function (request, reply) {
+				var creds = request.auth.credentials;
+				// console.log('Credentials are ', creds);
+				console.log('Logged in with twitter');
+				request.auth.session.clear();
+				request.auth.session.set({twitterName: creds.profile.username});
+				return reply.redirect('/static/photostream.html');
+			}
+		}
+	},
+
+	{
+		path: '/logout',
+		method: 'GET',
+		config: {
+			auth: 'session',
+			handler: function (request, reply) {
+				request.auth.session.clear();
+				console.log('Logged out successfully');
+				return reply.redirect('/');
+			}
+		}
+	},
+
+	{
+		path: '/',
+		method: 'GET',
+		config: {
+			auth: {
+				strategy: 'session',
+				mode: 'try'
+			},
+			handler: function (request, reply) {
+				if (request.auth.isAuthenticated) {
+					console.log("YOU ARE LOGGED IN as ", request.auth.credentials.twitterName);
+				}
+				else {
+					console.log("You are NOT logged in");
+				}
+				return reply.file('index.html');
+			}
+		}
+	},
+
+	{
+		path: '/static/photostream.html',
+		method: 'GET',
+		config: {
+			auth: {
+				strategy: 'session',
+				mode: 'try'
+			},
+			handler: function (request, reply) {
+				if (request.auth.isAuthenticated) {
+					console.log("YOU ARE LOGGED IN as ", request.auth.credentials.twitterName);
+				}
+				else {
+					console.log("You are NOT logged in");
+				}
+				return reply.file('photostream.html');
+			}
+		}
+	}
+>>>>>>> master
 ];
 
 
