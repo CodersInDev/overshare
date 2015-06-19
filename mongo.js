@@ -1,6 +1,6 @@
 var Mongodb = require('mongodb'),
 	MongoClient = Mongodb.MongoClient,
-	url = MONGOLAB_URI || 'mongodb://localhost:27017/overshare';
+	url = process.envMONGOLAB_URI || 'mongodb://localhost:27017/overshare';
 
 
 var mongo = {
