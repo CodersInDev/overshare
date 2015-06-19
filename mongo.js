@@ -1,7 +1,7 @@
 var Mongodb = require('mongodb'),
 	MongoClient = Mongodb.MongoClient,
-	url = 'mongodb://localhost:27017/overshare';
-   	
+	url = MONGOLAB_URI || 'mongodb://localhost:27017/overshare';
+
 
 var mongo = {
 	ObjectId: Mongodb.ObjectID,
@@ -15,7 +15,7 @@ var mongo = {
 				db.close();
 			});
 		});
-		
+
 	},
 	read: function(query, projection, dbCollection, callback){
 		MongoClient.connect(url, function(err, db) {
