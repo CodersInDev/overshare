@@ -1,6 +1,8 @@
 var database = require('./mongo.js');
 var Bcrypt = require('bcrypt');
 var aws = require('aws-sdk');
+var mandrill = require("mandril-api/mandrill")
+var mandrill_client = new mandrill.Mandrill(process.env.MANDRILL)
 
 var handlers = {
   home: function(request, reply) {
@@ -79,6 +81,7 @@ var handlers = {
           database.insert(user, "users");
         });
       });
+      sendEmail(request.payload.email)
       //try to auth with the new email and password
 
       //return this.login(request, reply);
@@ -121,5 +124,26 @@ var handlers = {
   }
 
 };
+
+function sendEmail(email) {
+var data = {
+          'from_email': 'alex.rubner@gmail.com',
+          'to': [
+          {
+            'email': email,
+            'name': 'CodersInDev',
+            'type': 'to'
+          }
+        ],
+          'autotext': 'true',
+          'subject': 'Thanks for signing up to Overshare',
+          'html': 'Welcome to Overshare. Your account is now active'
+};
+mandrill_client.messages.send({"message": data, "async": false},function(result) {
+    console.log(result);
+}, function(e) {
+    console.log("Error " + e.message);
+});
+}
 
 module.exports = handlers;
