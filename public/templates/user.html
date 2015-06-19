@@ -1,19 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-  <title>Create an account</title>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Sign up</title>
+    <link href="http://fonts.googleapis.com/css?family=Raleway:400,300,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/public/css/mobile_first.css" media="screen, handheld" />
+    <link rel="stylesheet" type="text/css" href="/public/css/enhanced.css" media="screen  and (min-width: 48em)" />
 </head>
-
 <body>
-  <h1>Register</h1>
-  {{message}}
-  <form action='/user' method='POST'>
-    <label for='email'>email</label>
-    <input name='email' type='text'>
-    <label for='password'>password</label>
-    <input name='password' type='password'>
-    <input type="submit">
-  </form>
+
+<div class="container">
+    <div class="section1">
+        <h1 class="logo">Welcome to Overshare</h1>
+        <div id="form_wrapper">
+            <h2 class="twitter">Sign up</h2>
+            {{message}}
+            <form action='/user' method='POST' id="signup_form">
+                <label for='email'>Email</label>
+                <input id='email_input' name='email' type='text'>
+                <label for='password'>Password</label>
+                <input id='password_input' name='password' type='password'>
+                <button id='signup_button'>Sign up</button>
+            </form>
+            <h2 class='member_text'>Have an account already?<span class="join"><a href="/login">Login</a></span></h2>
+        </div>
+    </div>
+</div>
+<script src=""></script>
 
 </body>
 </html>
