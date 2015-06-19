@@ -1,5 +1,5 @@
 var database = require('./mongo.js');
-Bcrypt = require('bcrypt');
+var Bcrypt = require('bcrypt');
 
 var handlers = {
   home: function(request, reply) {
@@ -24,14 +24,14 @@ var handlers = {
         return reply.view('login', context);
       }else{
         database.read({email: request.payload.email}, {}, "users", function(result){
-          console.log(result);
-          account = result[0];
-          if(account){
-            request.auth.session.set(account);
+          if(result.length){
+            request.auth.session.set(result[0]);
             return reply.redirect('/stream');
+          }else{
+            info = "Sorry this account doesn't exist";
+            return reply.view('login', {message: info});
           }
         });
-        // account = {id: "simon", password: "myPassword", username: "simon Lab"};
       }
     }
     if(request.method === 'get'){
