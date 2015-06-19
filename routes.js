@@ -43,6 +43,23 @@ var routes = [
       handler: handlers.logout,
       auth: 'session'
     }
+  },
+
+  {
+    path: "/user",
+    method: ["GET", "POST"],
+    config:{
+      handler: handlers.user,
+    auth: {
+      mode: 'try',
+      strategy: 'session'
+    },
+    plugins: {
+      'hapi-auth-cookie': {
+          redirectTo: false
+      }
+    }
+    }
   }
 ];
 
