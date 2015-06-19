@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 	 <meta charset="UTF-8">
     <title>Stream</title>
     <link href="http://fonts.googleapis.com/css?family=Raleway:400,300,700" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="/public/css/mobile_first.css" media="screen, handheld" />
     <link rel="stylesheet" type="text/css" href="/public/css/enhanced.css" media="screen  and (min-width: 48em)" />
+
 
 	<body>
 		<div id"navBar">
@@ -29,8 +31,14 @@
 			</div>
 
 			<div id="dashboard">
+
         
-       
+
+        <h2>{{email}}</h2>
+				{{#each images}}
+				  <img src={{this}}>
+				{{/each}}
+
 			</div>
 
 		</div>
@@ -43,6 +51,6 @@
 
 		<footer></footer>
 	</body>
-	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script src="/public/js/stream.js" type="text/javascript"></script>
 </html>

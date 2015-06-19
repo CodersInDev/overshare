@@ -73,10 +73,22 @@ var routes = [
   },
 
   {
-  method: "POST",
-  path: "/sign_s3",
-  handler: handlers.awsS3
-}
+    method: "POST",
+    path: "/sign_s3",
+    config:{
+      auth: 'session',
+      handler: handlers.awsS3
+    }
+  },
+
+  {
+    path: '/loginTwitter',
+    method: 'GET',
+    config:{
+      auth: 'twitter',
+      handler: handlers.twitter
+    }
+  }
 ];
 
 module.exports = routes;

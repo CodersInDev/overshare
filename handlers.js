@@ -10,8 +10,17 @@ var handlers = {
   },
 
   stream: function(request, reply){
-    var context = {email: request.auth.credentials.email};
-    return reply.view('stream', context);
+    database.read({}, {}, "images", function(result){
+      var urls = [];
+      for(var i = 0; i<result.length; i++){
+        urls.push(result[i].url);
+      }
+      var context = {images: urls, email: request.auth.credentials.email};
+      return reply.view('stream', context);
+    });
+
+
+
   },
 
   login: function(request, reply){
@@ -75,6 +84,8 @@ var handlers = {
       console.log(request.payload.email);
       sendEmail(request.payload.email);
       //try to auth with the new email and password
+
+      //return this.login(request, reply);
       return reply.redirect('/');
     }
   },
@@ -95,10 +106,23 @@ var handlers = {
         if(err){
           console.log("err ",err);
         } else {
+          var model = {
+            email: request.auth.credentials.email,
+            url: "https://s3-eu-west-1.amazonaws.com/overshare/images/" + request.query.file_name
+          };
+          database.insert(model, 'images');
           reply(data);
         }
     });
-}
+  },
+//
+
+  twitter: function(request, reply){
+    var creds = request.auth.credentials;
+    request.auth.session.clear();
+    request.auth.session.set({email: creds.profile.username});
+    return reply.redirect('/');
+  }
 
 };
 
