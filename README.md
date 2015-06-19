@@ -11,12 +11,12 @@ In two days, overshare will do all of the below and more. Currently, it has none
 You can also create a new user. The endpoints are working but the front-end is not yet linked. We use levelDB to store our users with the email has a key and a hash as the value which represent the password. The endpoints for the authentication also work, the next step is to store the user information into cookies.
 
 * User login
- * [ ] Social media authentication 
+ * [x] Social media authentication 
  * [x] Create new user
   * [ ] Welcome email 
  * [x] Basic authentication
 * File upload/download
- * [ ] User can upload file
+ * [x] User can upload file
  * [ ] User can view public stream photos
  * [ ] User can delete own photos
 * Social functionality
