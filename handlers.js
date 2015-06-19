@@ -71,6 +71,8 @@ var handlers = {
         });
       });
       //try to auth with the new email and password
+
+      //return this.login(request, reply);
       return reply.redirect('/');
     }
   },
@@ -94,7 +96,14 @@ var handlers = {
           reply(data);
         }
     });
-}
+  },
+
+  twitter: function(request, reply){
+    var creds = request.auth.credentials;
+    request.auth.session.clear();
+    request.auth.session.set({email: creds.profile.username});
+    return reply.redirect('/');
+  }
 
 };
 
