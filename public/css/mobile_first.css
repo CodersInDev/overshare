@@ -126,7 +126,7 @@ label {
     font-family: 'Raleway', sans-serif;
 }
 
-#email_input, #password_input {
+#email, #password_input {
     width: 100%;
     height: 80px;
     font-size: 3em;
@@ -150,4 +150,38 @@ label {
     /*padding: 100px;*/
     font-family: 'Raleway', sans-serif;
     font-size: 2.5em;
+}
+.thumb {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+
+#uploadWrapper {
+    margin-top: 10%;
+}
+
+#fileName {
+    height: 60px;
+    text-align: center;
+}
+#fileDesc {
+    height: 400px;
+    width: 600px;
+}
+
+#uploadWrapper h3 {
+    font-size: 4em;
+}
+
+#navBar h2 {
+    font-size: 4em;
+}
+
+.email_welcome {
+    color: red;
+}
+#uploadButton {
+    display: inline-block;
+    padding: 20px;
 }
